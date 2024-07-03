@@ -11,17 +11,11 @@ from app.models import User
 @app.route('/index')
 @login_required
 def index():
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Anasayfa', posts=posts)
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    
+    
+    return render_template('index.html', title='Anasayfa')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -62,3 +56,13 @@ def register():
         flash('Tebrikler, artık kayıtlı bir kullanıcısınız!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Kayıt Ol', form=form)
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html', title='Hakkımızda')
+
+
+
+
+

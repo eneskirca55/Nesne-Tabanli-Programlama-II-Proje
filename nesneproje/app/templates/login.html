@@ -1,25 +1,44 @@
-{% extends "base.html" %}
 
-{% block content %}
-    <h1>Giriş Yap</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
-    <p>Kayıt Olmak Mı İstiyorsun? <a href="{{ url_for('register') }}">Kayıt Olmak İçin Tıkla!</a></p>
-{% endblock %}
+  {% extends "base.html" %}
+
+  {% block content %}
+  
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h3> Giriş Yap</h3>
+          </div>
+          <div class="card-body">
+            <form action="" method="post" novalidate>
+              {{ form.hidden_tag() }}
+              <div class="mb-3">
+                {{ form.username.label }}<br>
+                {{ form.username(size=32, class="form-control") }}<br>
+                {% for error in form.username.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+                {% endfor %}
+              </div>
+              <div class="mb-3">
+                {{ form.password.label }}<br>
+                {{ form.password(size=32, class="form-control") }}<br>
+                {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+                {% endfor %}
+              </div>
+              <div class="form-check mb-3">
+                {{ form.remember_me() }} {{ form.remember_me.label }}
+              </div>
+              <button type="submit" class="btn btn-dark">Giriş Yap</button>
+              
+            </form>
+          </div>
+        </div>
+        <p class="mt-3">Kayıt Olmak Mı İstiyorsun? <a href="{{ url_for('register') }}">Buraya Tıkla!</a></p>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+  
