@@ -41,7 +41,7 @@
                 <a class="nav-link fs-4"  href="{{url_for('about')}}">Hakkımızda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fs-4"  href="#location">İletişim</a>
+                <a class="nav-link fs-4"  href="/index#location">İletişim</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +57,13 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link fs-4"  href="{{url_for('logout')}}">Çıkış</a>
+                <a class="nav-link fs-4"  href="{{ url_for('user', username=current_user.username) }}">Profil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-4"  href="{{url_for('explore')}}">Müşteri Yorumları</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-4"  href="{{url_for('logout')}}">Çıkış Yap</a>
               </li>
             </ul>
           </div>

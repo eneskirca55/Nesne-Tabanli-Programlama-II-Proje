@@ -2,18 +2,9 @@
     {% block content %}
 
 <style>
-  body{
-    overflow-x: hidden;
-    
-    }
-    card-body {
-      height: 400px; 
-      position: relative;
-    }
-    
+  body{overflow-x: hidden;}
+  card-body {height: 400px; position: relative;}
 </style>
-
-
 
 
   
@@ -50,8 +41,9 @@
     <p class="text-center mt-4  fs-4 fw-bolder ">
       Geniş ürün yelpazemiz, güleryüzümüz ve yüksek tecrübemizle sizleri mağazamızda görmekten mutluluklar duyarız.</p>
     </div>
-      
     
+    <br><br><br>
+    <p class="text-center mt-5 fs-4 fw-bolder">-ÜRÜNLERİMİZ-</p>
     
     
     
@@ -123,7 +115,42 @@
                 </div>
           </div>
         </div>
+        <div class="container m-5">
 
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <h1>Bizimle deneyimlerini paylaş, {{ current_user.username }}!</h1>
+        
+        <form action="" method="post" class="mb-5">
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+              {{ form.post.label(class="form-label") }}
+              {{ form.post(class="form-control", cols=32, rows=4) }}
+              {% for error in form.post.errors %}
+              <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+          </div>
+          <div class="form-group mt-5">
+              {{ form.submit(class="btn btn-dark") }}
+          </div>
+      </form>
+        
+        {% for post in posts %}
+        {% include '_post.html' %}
+        
+        {% endfor %}
+
+
+      </div>
     
     
     

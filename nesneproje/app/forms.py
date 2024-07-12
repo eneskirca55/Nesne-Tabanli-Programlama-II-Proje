@@ -5,6 +5,9 @@ import sqlalchemy as sa
 from app import db
 from app.models import User
 
+from wtforms import TextAreaField
+from wtforms.validators import Length
+
 
 class LoginForm(FlaskForm):
     username = StringField('Kullanıcı Adı', validators=[DataRequired()])
@@ -32,3 +35,14 @@ class RegistrationForm(FlaskForm):
             User.email == email.data))
         if user is not None:
             raise ValidationError('Lütfen farklı bir email adresi kullanın.')
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Kullanıcı Adı', validators=[DataRequired()])
+    about_me = TextAreaField('Hakkında', validators=[Length(min=0, max=140)])
+    submit = SubmitField('Onayla')
+    
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Bir şeyler yaz', validators=[
+        DataRequired(), Length(min=1, max=80)])
+    submit = SubmitField('Paylaş')
