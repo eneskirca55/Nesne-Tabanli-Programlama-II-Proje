@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="m-5">Yönetici Paneli</h1>
+    <h2 class="m-5">Postları Düzenle</h2>
+    <div class="table-responsive m-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Yorum</th>
+                    <th>Yazar</th>
+                    <th>Tarih</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.body }}</td>
+                    <td>{{ post.author.username }}</td>
+                    <td>{{ post.timestamp }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-primary">Düzenle</a>
+                        <a href="{{ url_for('delete_post', post_id=post.id) }}" class="btn btn-danger">Sil</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
